@@ -2,6 +2,7 @@
 for(var i=0; i<document.querySelectorAll(".drum").length; i++){
     document.querySelectorAll('.drum')[i].addEventListener('click',function(){
         var buttonclicked = this.innerHTML;
+        buttonAnimation(buttonclicked);
         switch(buttonclicked) {
             case 'w':
                 var audio = new Audio('./sounds/tom-1.mp3');
@@ -43,8 +44,10 @@ for(var i=0; i<document.querySelectorAll(".drum").length; i++){
         
     });
 }
+
 document.addEventListener('keydown',function(e){
     var buttonclicked = e.key;
+    buttonAnimation(buttonclicked);
         switch(buttonclicked) {
             case 'w':
                 var audio = new Audio('./sounds/tom-1.mp3');
@@ -84,3 +87,12 @@ document.addEventListener('keydown',function(e){
                 console.log(buttonclicked);
         }
 });
+
+function buttonAnimation(keypressed){
+    var activekey = document.querySelector("."+keypressed);
+    activekey.classList.add("pressed");
+
+    setTimeout(() => {
+        activekey.classList.remove("pressed");
+    }, 100);
+}
